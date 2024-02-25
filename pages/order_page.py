@@ -2,16 +2,16 @@ import allure
 
 from pages.base_page import BasePage
 from locators.order_page_locators import OrderPageLocators
-from locators.main_page_locators import Header
+from locators.main_page_locators import Header, MainPageLocators
 from helpers import FormatLocator as fl
 from helpers import FutureDate as fd
+from test_data import OrderSuccess
 
 
 class OrderPage(BasePage):
 
     @allure.step('Заполнение данных о заказчике')
     def fill_customer_info(self, name, last_name, address, station_number, phone_number):
-
         self.input_text(OrderPageLocators.NAME_INPUT, name)
 
         self.input_text(OrderPageLocators.LAST_NAME_INPUT, last_name)
@@ -30,7 +30,6 @@ class OrderPage(BasePage):
 
     @allure.step('Заполнение данных об аренде')
     def fill_delivery_info(self):
-
         delivery_time = fd.future_date()
         self.input_text(OrderPageLocators.DELIVERY_TIME, delivery_time)
         self.press_enter(OrderPageLocators.DELIVERY_TIME)
@@ -51,3 +50,10 @@ class OrderPage(BasePage):
     @allure.step('Нажатие логотипа Самокат и переход на главную страницу')
     def click_scooter_logo(self):
         self.click_element(Header.SAMOKAT_LOGO)
+
+    def is_order_success(self):
+        return OrderSuccess.ORDER_SUCCESS in self.get_element_text(OrderPageLocators.DELIVERY_CONFIRM)
+
+    @allure.step('Подтверждение куки')
+    def accept_cookies(self):
+        self.click_element(MainPageLocators.COOKIES)

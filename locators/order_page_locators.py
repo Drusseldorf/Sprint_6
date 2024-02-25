@@ -10,6 +10,7 @@ class OrderPageLocators:
     STATION_INPUT = By.CSS_SELECTOR, 'input[placeholder="* Станция метро"]'
     PHONE_INPUT = By.CSS_SELECTOR, 'input[placeholder="* Телефон: на него позвонит курьер"]'
     BUTTON_NEXT = By.XPATH, '//button[text()="Далее"]'
+    COOKIES = By.ID, 'rcc-confirm-button'
 
     DELIVERY_TIME = By.CSS_SELECTOR, 'input[placeholder="* Когда привезти самокат"]'
     RENTAL_PERIOD_DAY = By.XPATH, '//div[text()="сутки"]'

@@ -2,8 +2,7 @@ import allure
 import pytest
 
 from locators.main_page_locators import MainPageLocators
-from locators.order_page_locators import OrderPageLocators
-from test_data import Url, CustomerData, OrderSuccess
+from test_data import Url, CustomerData
 from pages.order_page import OrderPage
 
 
@@ -39,4 +38,4 @@ class TestOrderScooter:
 
         order_page.confirm_delivery()
 
-        assert OrderSuccess.ORDER_SUCCESS in order_page.get_element_text(OrderPageLocators.DELIVERY_CONFIRM)
+        assert order_page.is_order_success()

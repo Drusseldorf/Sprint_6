@@ -16,3 +16,7 @@ class MainPage(BasePage):
         self.click_element(question_locator)
 
         return self.get_element_text(answer_locator)
+
+    @allure.step('Подтверждение куки')
+    def accept_cookies(self):
+        self.click_element(MainPageLocators.COOKIES)

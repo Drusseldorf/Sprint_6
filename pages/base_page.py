@@ -1,7 +1,6 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
-from locators.main_page_locators import MainPageLocators, Header
 
 
 class BasePage:
@@ -11,9 +10,6 @@ class BasePage:
 
     def open_page(self, url):
         self.driver.get(url)
-
-    def accept_cookies(self):
-        self.click_element(MainPageLocators.COOKIES)
 
     def get_element_text(self, locator):
         return wait(self.driver, timeout=3).until(EC.presence_of_element_located(locator)).text
