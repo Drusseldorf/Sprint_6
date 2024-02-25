@@ -2,7 +2,7 @@ import allure
 
 from pages.base_page import BasePage
 from locators.order_page_locators import OrderPageLocators
-from locators.main_page_locators import Header, MainPageLocators
+from locators.main_page_locators import Header
 from helpers import FormatLocator as fl
 from helpers import FutureDate as fd
 from test_data import OrderSuccess
@@ -56,4 +56,4 @@ class OrderPage(BasePage):
 
     @allure.step('Подтверждение куки')
     def accept_cookies(self):
-        self.click_element(MainPageLocators.COOKIES)
+        self.click_element(OrderPageLocators.COOKIES)
