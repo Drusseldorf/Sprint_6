@@ -6,7 +6,10 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture(scope='function')
 def driver():
-    driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    options = webdriver.FirefoxOptions()
+    options.headless = True  # Включение headless режима
+    service = FirefoxService(GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service, options=options)
     driver.set_window_size(1920, 1080)
     yield driver
     driver.quit()
