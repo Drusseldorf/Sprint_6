@@ -1,0 +1,35 @@
+name: Automated tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - first_test
+          - second_test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: install requirements
+        run: pip install -r requirements.txt
+      - name: first_test
+        if: "github.event.inpots.deployment_target == 'first_test'"
+        run: pytest tests/test_logo_redirect.py::test_yandex_logo_redirect
+      - name: second_test
+        if: "github.event.inpots.deployment_target == 'second_test'"
+        run: pytest tests/test_logo_redirect.py::test_scooter_logo_redirect
